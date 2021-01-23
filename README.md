@@ -1,6 +1,14 @@
 
-
-<div style="width: 50%; margin: 50px auto;"><img src="https://github.com/EDGUS1/SOE/blob/main/public/img/logo_empresa.png?raw=true" style="width: 100%;"></div>
+<!--lint disable no-literal-urls-->
+<p align="center">
+  <a href="https://nodejs.org/">
+    <img
+      alt="Node.js"
+      src="https://github.com/EDGUS1/SOE/blob/main/public/img/logo_empresa.png?raw=true"
+      width="300"
+    />
+  </a>
+</p>
 
 
 <div style="text-align:center; font-size:40px"> SOE </div>
