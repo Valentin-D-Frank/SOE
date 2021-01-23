@@ -1,9 +1,9 @@
 
 <!--lint disable no-literal-urls-->
 <p align="center">
-  <a href="https://nodejs.org/">
+  <a href="https://github.com/EDGUS1/Amezaga-Code.git">
     <img
-      alt="Node.js"
+      alt="AmezagaCode"
       src="https://github.com/EDGUS1/SOE/blob/main/public/img/logo_empresa.png?raw=true"
       width="300"
     />
