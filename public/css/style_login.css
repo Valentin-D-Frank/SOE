@@ -142,7 +142,6 @@ footer {
         height: 250px;
         margin: auto;
         background: rgba(178, 178, 178, .2);
-        /* border: 1px solid black; */
         display: flex;
         flex-direction: column;
         justify-content: space-between;
