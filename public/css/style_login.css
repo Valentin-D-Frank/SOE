@@ -1,0 +1,149 @@
+#texto-arriba {
+    text-align: center;
+    padding: 1px;
+    font-weight: lighter;
+    font-size: 2rem;
+    line-height: 1%;
+    font-family: Arial, Helvetica, sans-serif;
+    color: gray;
+}
+
+#imagen {
+    width: 100px;
+    height: 100px;
+    margin: 50px auto 10px;
+}
+
+img {
+    width: 100px;
+}
+
+p {
+    text-align: center;
+    padding: 1px;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+input {
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+#formulario {
+    width: 25%;
+    height: 300px;
+    margin: auto;
+    padding: 20px;
+    background: rgba(178, 178, 178, .2);
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 7%;
+    box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+form {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+}
+
+.btn-volver {
+    margin-top: 10px;
+    height: 55px;
+    color: white;
+    background: rgb(226, 66, 66);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-volver:hover {
+    background: red;
+}
+
+input {
+    height: 35px;
+    border-radius: 10px;
+    border: .5px solid black;
+}
+
+#btn {
+    /* flex-grow: 2; */
+    height: 55px;
+    background: #58B84D;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+}
+
+#btn:hover {
+    background: green;
+    cursor: pointer;
+}
+
+.img {
+    width: 90%;
+}
+
+.new {
+    /* background: salmon; */
+    /* width: 50%;
+    margin: auto; */
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.new a {
+    text-decoration: none;
+}
+
+hr {
+    width: 80%;
+}
+
+footer {
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1100px) {
+    #formulario {
+        width: 40%;
+        height: 250px;
+        margin: auto;
+        background: rgba(178, 178, 178, .2);
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #formulario {
+        width: 50%;
+        height: 250px;
+        margin: auto;
+        background: rgba(178, 178, 178, .2);
+        /* border: 1px solid black; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,56 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title SOE - Login
+  link(rel='stylesheet' href='static/css/style_login.css')
+#imagen
+  img.img(src='static/img/logo.JPG' alt='')
+p Iniciar sesion
+section#app
+  form(action='')
+    label(for='email') Email
+    br
+    input#email(type='email' required='' autocomplete='off' autofocus='' v-model = 'user.email')
+    br
+    label(for='password') Contrase&ntilde;a
+    br
+    input#password(type='password' required='' v-model = 'user.password')
+    br
+    input#btn(type='button' value='Acceder' @click = 'login')
+    a.btn-volver(href='/')
+      span Regresar
+.new
+  | &iquest;Nuevo en Soe? 
+  a(href='/register') Crear una cuenta
+br
+br
+hr
+footer
+  span &copy; Todos los derechos reservados
+        script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+        script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+        script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+        script.
+          var app = new Vue({
+            el: '#app',
+            data: {
+              user: {
+                email: '',
+                password: '',
+              }
+            },
+            methods: {
+              login() {
+                console.log('execute login')
+                axios.post('/user', {
+                  command: 'LOGIN_USER',
+                  transaction: this.user
+                })
+                  .then(resp => {
+                    const response = resp.data
+                    console.log(response)
+                  })
+              }
+            }
+          })

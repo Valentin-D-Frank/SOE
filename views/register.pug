@@ -1,0 +1,81 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    title Document
+    link(rel='stylesheet' href='static/css/register.css')
+    script(src='https://www.google.com/recaptcha/api.js?hl=es')
+  body
+    #cabezera
+      header
+        nav#navbar
+          #navegation.container
+            a(href='/')
+              img(src='../static/img/logo_empresa_opt.jpg' alt='Logotipo')
+            span#navbar-toggle
+              i.fas.fa-bars
+    #texto-arriba
+      h5 Unirse a SOE
+      h3 Crea tu Cuenta
+    #app
+      section
+        form(action='/' method='GET')
+          
+          label(for='') Nombre
+          br
+          input(type='text' v-model='user.name')
+          br
+          label(for='') Email
+          br
+          input(type='text' v-model='user.email')
+          br
+          label(for='') Contraseña
+          br
+          input(type='password' v-model='user.password')
+          br
+          label(for='') Confirmar Contraseña
+          br
+          input(type='password' v-model= 'user.repassword')
+          br
+          #cap
+            .g-recaptcha(data-sitekey='6LdKywEaAAAAAG3QjlZmaopos4sfWRyhZecp9mlr')
+          input#btn(type='submit' value='Crear Cuenta' @click = 'signup')
+    .new
+      | Ya tienes Cuenta? 
+      a(href='/login') Inicia sesión aquí
+    footer
+      ul
+        li Terminos
+        li Provacidad
+        li Seguridad
+        li Contactar con AmezagaCode
+        script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+        script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+        script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+        script.
+          var app = new Vue({
+            el: '#app', 
+            data: {
+              user: {
+                name: '',
+                email: '',
+                password: '',
+                repassword: ''
+              }
+            },
+            methods: {
+              signup() {
+                console.log(this.user)
+                axios.post('/user', {
+                  command: 'REGISTER_USER',
+                  transaction: this.user
+                })
+                  .then(resp => {
+                    const response = resp.data
+                    console.log('oeiwbvoiebwvewv');
+                    console.log(response)
+                  })
+              }
+            }
+          })
