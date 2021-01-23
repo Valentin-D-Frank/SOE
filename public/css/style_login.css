@@ -30,7 +30,8 @@ input {
     -webkit-appearance: none;
 }
 
-#formulario {
+#formulario,
+#app {
     width: 25%;
     height: 300px;
     margin: auto;
