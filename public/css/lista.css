@@ -1,0 +1,116 @@
+/*Estilos generales*/
+
+html,
+body {
+    height: 100%;
+}
+
+
+/*Modificar el modelo de cajas de CSS*/
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+/*Resetear margenes y padding*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.09rem;
+}
+
+
+/*centrar elementos en pantalla*/
+
+.container {
+    width: 90%;
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
+#Logo {
+    width: 30%;
+}
+
+
+/*ESTILOS GENERALES DE LOS TEXTOS*/
+
+h2 {
+    font-size: 1.45rem;
+    margin-bottom: 20px;
+}
+
+p {
+    line-height: 1.8;
+    padding-right: 1em;
+    margin-bottom: 25px;
+}
+
+td {
+    margin-left: 0;
+}
+
+
+/*ESTILOS GENERALES DE LOS BOTOTES*/
+
+
+/*ESTILOS DE LOS CONTENIDOS*/
+
+
+/*BARRA DE NAVEGACION*/
+
+#navegation a {
+    padding-top: 20px;
+}
+
+#navbar {
+    background-color: #2D9FEB;
+}
+
+#navegation {
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-nav {
+    display: flex;
+    list-style: none;
+    font-family: 'Lato', sans-serif;
+}
+
+#main-nav li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 25px 0.9em;
+    display: inline-block;
+}
+
+#main-nav li:last-child {
+    color: #ffa600;
+    padding: 25px 0.9em;
+}
+
+#main-nav li a:hover {
+    background-color: #060829;
+}
+
+#navbar-toggle {
+    color: #fff;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 20px;
+    right: 55px;
+    display: none;
+}

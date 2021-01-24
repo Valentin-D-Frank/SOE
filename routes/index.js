@@ -18,10 +18,6 @@ api.get("/", function (req, res) {
   res.render("principal");
 });
 
-/* api.get("/lista", function (req, res) {
-  res.render("lista");
-}); */
-
 api.get("/prueba", (req, res) => {
   connection.query("SELECT * FROM usuario", (err, result) => {
     console.log(result);
@@ -62,7 +58,16 @@ api.get("/lista", (req, res) => {
     { nombre: "Larry", apellido: "apellido" },
     { nombre: "Eduardo", apellido: "Navarro" },
   ];
-  res.render("lista", { personas });
+  const tarea = "Tarea 01";
+  const curso = "Curso de (nombre del curso)";
+  const fecha = "Fecha de entrega limite";
+  res.render("lista", { personas, tarea, curso, fecha });
+});
+api.get("/consultauser", (req, res) => {
+  connection.query("SELECT * FROM usuario", (err, result) => {
+    console.log(result);
+    res.json(result);
+  });
 });
 
 api.post("/user", user);

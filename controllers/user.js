@@ -64,7 +64,7 @@ function loginUser(req, res) {
         });
       }
       if (result != []) {
-        console.log(result);
+        console.log(`Respuesta desde sql ${result}`);
         bcrypt.compare(
           newUsuario.password,
           result.password,
