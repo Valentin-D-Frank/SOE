@@ -58,8 +58,9 @@ function loginUser(req, res) {
     }); */
     connection.query(
         "SELECT * FROM usuario WHERE correo = ?", [newUsuario.email],
-        async(err, result) => {
-            if (err) {
+        (err, result) => {
+            console.log(err);
+            if (err == []) {
                 return res.status(200).send({
                     status: "Failed",
                     message: "No se encontro el usuario",
