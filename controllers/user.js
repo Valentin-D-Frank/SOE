@@ -59,33 +59,39 @@ function loginUser(req, res) {
     connection.query(
         "SELECT * FROM usuario WHERE correo = ?", [newUsuario.email],
         (err, result) => {
-            console.log(err);
-            if (err == []) {
+            console.log('EEEEEEEEEEEEE', err, result);
+            if (err != null) console.log(err);
+            if (result == '') {
                 return res.status(200).send({
                     status: "Failed",
                     message: "No se encontro el usuario",
                 });
             }
-            if (result != []) {
+            if (result != '') {
                 console.log('Result -> ', result);
-                bcrypt.compare(newUsuario.password, result.contrasenia,
-                    (err2, result2) => {
-                        console.log('Result2 -> ', result2);
-                        if (err2) {
-                            console.log('err2 -> ', err2);
-                            return res.status(200).send({
-                                status: "FAILED",
-                                message: "La contraseña es incorrecta",
-                            });
+                try {
+
+                    bcrypt.compare(newUsuario.password, result.contrasenia,
+                        (err2, result2) => {
+                            console.log('Result2 -> ', result2);
+                            if (err2) {
+                                console.log('err2 -> ', err2);
+                                return res.status(200).send({
+                                    status: "FAILED",
+                                    message: "La contraseña es incorrecta",
+                                });
+                            }
+                            if (result2) {
+                                return res.status(200).send({
+                                    status: "SUCCESS",
+                                    message: "Usuario logeado correctamente",
+                                });
+                            }
                         }
-                        if (result2) {
-                            return res.status(200).send({
-                                status: "SUCCESS",
-                                message: "Usuario logeado correctamente",
-                            });
-                        }
-                    }
-                );
+                    );
+                } catch {
+                    console.log('Error en el try');
+                }
             }
 
             // connection.end()
