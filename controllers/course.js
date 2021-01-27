@@ -27,7 +27,7 @@ function registerCourse(req, res) {
     console.log(req.body.transaction);
     connection.connect()
     connection.query(
-        'INSERT INTO curso(nombre_curso,id_usuario,descripcion) values(?,?,?)', [newCourse.nombre_curso, newCourse.id_usuario, newCourse.descripcion],
+        'INSERT INTO curso values(?,?,?,?)', [newCourse.id,newCourse.nombre_curso, newCourse.id_usuario, newCourse.descripcion],
         (err, result) => {
             if (err) {
                 return res
@@ -46,23 +46,5 @@ function registerCourse(req, res) {
             }
         })
     connection.end()
-        /*.then((res) => {
-            return res
-                .status(200)
-                .send({
-                    status: 'SUCCESS',
-                    message: 'Usuario registrado correctamente'
-                })
-        })
-        .catch((err) => {
-            return res
-                .status(200)
-                .send({
-                    status: 'FAILED',
-                    message: err
-                })
-
-        })*/
-
 }
 module.exports = userOperation

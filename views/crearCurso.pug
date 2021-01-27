@@ -50,28 +50,29 @@ html(lang='es')
 
 
           #app
-          form(action='')
+            form(action='/dashboard' method="GET")
 
-            label(for='nombre' v-model='.name')
-              | Nombre del curso
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.nombre_curso')
+              label(for='')
+                | Nombre del curso
+                span.asterisco *
+                | :
+              input#nombre(type='text' required='' v-model='course.nombre_curso')
 
 
-            label(for='id usuario')
-              | ID del usuario, ingrese su usuario
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.id_usuario')
+              label(for='')
+                | ID del usuario, ingrese su usuario
+                span.asterisco *
+                | :
+              input#nombre(type='text' required='' v-model='course.id_usuario')
 
-            label(for='descripcc')
-              | Descripción del curso
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.descripcion')
+              label(for='')
+                | Descripción del curso
+                span.asterisco *
+                | :
+              input#nombre(type='text' required='' v-model='course.descripcion')
+              
+              input(type='submit' value='Crear Curso' @click = 'crearCurso')
 
-            input(type='button' value='Crear curso' @click = 'crearCurso')
 
         aside
           h3 Redes sociales
@@ -93,6 +94,7 @@ html(lang='es')
               input(type='submit' value='Enviar')
     // Pie de Pagina
     footer
+      span &copy; Todos los derechos reservados
       #pieDePagina.container
         div
           h3 Sistema Organizativo Estudiantil (SOE)
@@ -108,11 +110,16 @@ html(lang='es')
               i.fab.fa-linkedin-in
       #copyright
         | © Derechos reservados.
+        
+    script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+    script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+    
     script.
       var app = new Vue({
                   el: '#app',
                   data: {
-                    course: {
+                   course: {
                       nombre_curso: '',
                       id_usuario: '',
                       descripcion: ''
@@ -122,6 +129,8 @@ html(lang='es')
 
           methods: {
                     crearCurso() {
+                      
+                      console.log(this.course)
                       axios.post('/course', {
                         command: 'REGISTER_COURSE',
                         transaction: this.course
@@ -132,17 +141,5 @@ html(lang='es')
                         })
                     }
                   }
-
-      // Comportamientos para el menú de navegación.
-      let mainNav=document.getElementById('main-nav');
-      let navbarToggle=document.getElementById('navbar-toggle');
-      navbarToggle.addEventListener('click',function() {
-      if (this.classList.contains('active')){
-      mainNav.style.display="none";
-      this.classList.remove('active');
-      }
-      else {
-      mainNav.style.display="flex";
-      this.classList.add('active');
-      }
       });
+

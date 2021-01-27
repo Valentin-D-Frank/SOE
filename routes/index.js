@@ -69,6 +69,12 @@ api.post("/homework", homework);
 
 api.post("/course", course);
 
+api.get("/course", function(req, res) {
+    res.render("course");
+});
+
+
+
 api.post("/login", (req, res) => {
     res.send("Registrado");
 });
