@@ -52,10 +52,7 @@ html(lang='es')
     main
       header
         .container
-          if result != ''
-            h1= result[0].nombre
-          else
-            h1 Crea un curso nuevo
+          h1= nombre_curso
       article#pages.container
         section
           h2 Listado de Tareas del curso
