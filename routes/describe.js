@@ -40,4 +40,6 @@ api.get("/usuariocurso", (req, res) => {
     });
 });
 
+
+
 module.exports = api;

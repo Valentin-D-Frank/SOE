@@ -2,6 +2,7 @@ const express = require("express");
 const user = require("../controllers/user");
 const homework = require("../controllers/homework");
 const course = require("../controllers/course");
+const cloudinary = require("../lib/cloudinary");
 
 const api = express.Router();
 const dbConnection = require("../connect");
@@ -78,5 +79,7 @@ api.get("/course", function(req, res) {
 api.post("/login", (req, res) => {
     res.send("Registrado");
 });
+
+api.post("/assignment/:id_curso",user.assignment);
 
 module.exports = api;
