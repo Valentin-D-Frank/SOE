@@ -2,6 +2,8 @@ const express = require("express");
 const user = require("../controllers/user");
 const homework = require("../controllers/homework");
 const course = require("../controllers/course");
+const usercurso = require("../controllers/usercurso");
+const tarea = require('../controllers/tarea');
 
 const api = express.Router();
 const dbConnection = require("../connect");
@@ -18,25 +20,28 @@ api.get("/", function(req, res) {
     res.render("principal");
 });
 
-api.get("/prueba", (req, res) => {
-    connection.query("SELECT * FROM usuario", (err, result) => {
-        console.log(result);
-        res.render("login", {
-            user: result,
+api.get("/curso/:id/:iduser", (req, res) => {
+    const { id, iduser } = req.params;
+    /* console.log(iduser); */
+    let userid = [];
+    connection.query("SELECT * FROM curso WHERE id = ?", [id], (err, result) => {
+        userid = result[0].creador;
+        connection.query("SELECT * FROM tarea WHERE id_curso = ?", [id], (err, result) => {
+            profesor = false
+            if (iduser == userid) profesor = true
+            res.render("curso", { result, profesor, curso_id: id, userid, iduser });
         });
     });
 });
 
-api.get("/curso", (req, res) => {
-    res.render("curso");
+api.get("/crearcurso/:id", function(req, res) {
+    const { id } = req.params;
+    res.render("crearCurso", { userid: id });
 });
 
-api.get("/crearCurso", function(req, res) {
-    res.render("crearCurso");
-});
-
-api.get("/crearTarea", function(req, res) {
-    res.render("crearTarea");
+api.get("/creartarea/:id/:userid", function(req, res) {
+    const { id, userid } = req.params;
+    res.render("crearTarea", { cursoid: id, userid });
 });
 
 api.get("/login", function(req, res) {
@@ -47,34 +52,41 @@ api.get("/register", function(req, res) {
     res.render("register");
 });
 
-api.get("/dashboard", function(req, res) {
-    res.render("home");
+api.get("/dashboard/:id", function(req, res) {
+    const { id } = req.params
+    let cursos = []
+    let cursos2 = []
+    connection.query("SELECT * FROM curso WHERE creador = ?", [id], (err, result) => {
+        cursos = result
+    });
+    connection.query("SELECT * FROM curso, usuario_curso WHERE id = id_curso AND id_usuario = ?", [id], (err, result) => {
+        /* console.log(result); */
+        cursos2 = result
+    });
+    connection.query("SELECT * FROM usuario  WHERE id = ? ", [id], (err, result) => {
+
+        if (result == '') res.send('404');
+        res.render("home", { result, cursos, userid: id, cursos2 });
+    });
 });
 
-api.get("/lista", (req, res) => {
-    const personas = [
-        { nombre: "Mark", apellido: "Otto" },
-        { nombre: "Jacob", apellido: "Thornton" },
-        { nombre: "Larry", apellido: "apellido" },
-        { nombre: "Eduardo", apellido: "Navarro" },
-    ];
-    const tarea = "Tarea 01";
-    const curso = "Curso de (nombre del curso)";
-    const fecha = "Fecha de entrega limite";
-    res.render("lista", { personas, tarea, curso, fecha });
+api.get("/lista/:id", (req, res) => {
+    const { id } = req.params
+    let personas = [];
+    connection.query("SELECT * FROM usuario ,usuario_tarea WHERE id = id_usuario AND id_tarea = ?", [id], (err, result) => {
+        personas = result;
+    });
+    connection.query("SELECT * FROM tarea WHERE id = ?", [id], (err, result) => {
+        res.render("lista", { personas, result });
+    });
+
 });
 
 api.post("/user", user);
 api.post("/homework", homework);
-
 api.post("/course", course);
-
-api.get("/course", function(req, res) {
-    res.render("course");
-});
-
-
-
+api.post('/usercurso', usercurso);
+api.post('/tarea', tarea);
 api.post("/login", (req, res) => {
     res.send("Registrado");
 });

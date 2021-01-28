@@ -1,164 +1,117 @@
 doctype html
-html(lang='es')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Pagina Principal
-    // CSS
-    link(rel='stylesheet' href='static/css/style_home.css')
-    link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
-    // Fuentes
-    link(href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap' rel='stylesheet')
-    // Font-Awesome
-    script(src='https://kit.fontawesome.com/804f7da927.js' crossorigin='anonymous')
-    // Favicon
-  body
-    // Cabezera
-    header
-      nav#navbar
-        #navegation.container(style='line-height: 200px;')
-          a(href='index')
-            img#Logo(src='static/img/logo_empresa.png' alt='Logotipo')
-          span#navbar-toggle
-            i.fas.fa-bars
-          ul#main-nav
-            li
-              a(href='#')
-                p.card-text Crear Curso
-                i.fas.fa-plus
-            li
-    // Principal
-    main
-      header
-        .container
-          h1 Bienvenido/a "Nombre"
-      article#pages.container
-        section
-          .row
-            .col
-              #curso.card
-                a#ir-curso(href='')
-                  .card-header.bg-success
-                    .media
-                      .media-body
-                        h5 Curso
-                        h5 Profesor
-                      img#profesor.rounded-circle(style='width: 25%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
-                .card-body
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-                .card-footer
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-            .col
-              #curso.card
-                a#ir-curso(href='')
-                  .card-header.bg-warning
-                    .media
-                      .media-body
-                        h5 Curso
-                        h5 Profesor
-                      img#profesor.rounded-circle(style='width: 25%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
-                .card-body
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-                .card-footer
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-          .row
-            .col
-              #curso.card
-                a#ir-curso(href='')
-                  .card-header.bg-danger
-                    .media
-                      .media-body
-                        h5 Curso
-                        h5 Profesor
-                      img#profesor.rounded-circle(style='width: 25%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
-                .card-body
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-                .card-footer
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-            .col
-              #curso.card
-                a#ir-curso(href='')
-                  .card-header.bg-primary
-                    .media
-                      .media-body
-                        h5 Curso
-                        h5 Profesor
-                      img#profesor.rounded-circle(style='width: 25%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
-                .card-body
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-                .card-footer
-                  h5.card-title Texto Titulo
-                  p.card-text Texto Parrafo
-        aside
-          .container.rounded(style='border-style: solid; border-width: 2%; border-color: gray;')
-            #cronometro.rounded
-              #tiempo 20 : 00
-              button#btn-cro.btn.btn-outline-warning(type='button' onclick='cronometro()') Iniciar
-            #Calendario.card
-              .card-header.bg-success(style='text-align: center;')
-                | MES
-              .card-body
-                .row
-                  .col-md
-                    | L
-                  .col-md
-                    | M
-                  .col-md
-                    | M
-                  .col-md
-                    | J
-                  .col-md
-                    | V
-                  .col-md
-                    | S
-                  .col-md
-                    | D
-                .row
-                .row
-    // Pie de Pagina
-    footer
-      #pieDePagina.container
-        div(style='line-height: 50px;')
-          h3 Sistema Organizativo Estudiantil (SOE)
-        div
-          a(href='index')
-            img(style='margin-bottom: 10%;' src='static/img/logo_empresa_2x.png' alt='Logotipo')
-          #social
-            a(href='#')
-              i.fab.fa-facebook-f
-            a(href='#')
-              i.fab.fa-twitter
-            a(href='#')
-              i.fab.fa-linkedin-in
-      #copyright
-        | © Derechos reservados.
-    script.
-      function cronometro(){
-      var t = 20*60000;
-      var x = setInterval(function() {
-      document.getElementById('btn-cro').disabled=true;
-      var now = new Date().getTime();
-      var days = Math.floor(t / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
-      var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((t % (1000 * 60)) / 1000);
-      if(seconds<10){
-      document.getElementById("tiempo").innerHTML =minutes+" : 0"+seconds;
-      }else{
-      document.getElementById("tiempo").innerHTML =minutes+" : "+seconds;
-      }
-      t=t-1000;
-      if (t < 0) {
-      clearInterval(x);
-      document.getElementById("tiempo").innerHTML = "TERMINADO";
-      document.getElementById('btn-cro').disabled=false;
-      }
-      }, 1000);
-      }
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Soe
+  link(rel='icon' type='image/x-icon' href='/static/img/favicon.ico')
+  link(rel='stylesheet' href='/static/css/style_home.css')
+  link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' integrity='sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm' crossorigin='anonymous')
+  script(src='https://kit.fontawesome.com/804f7da927.js' crossorigin='anonymous')
+// Cabezera
+header
+  nav#navbar
+    #navegation.container(style='line-height: 10px;')
+      a(href='/')
+        img#Logo(src='/static/img/logo_empresa.png', alt='Logotipo')
+      ul#main-nav
+        li
+          a.card-text(href=`/crearcurso/${userid}`) Crear Curso
+        li
+          a.card-text(href='/') Logout
+
+// Principal
+main
+  header
+    .container
+      h1= `Bienvenido/a ${result[0].nombre}`
+  article#pages.container
+    section
+      each c,i in cursos
+            .row
+              .col
+                #curso.card
+                  a#ir-curso(href=`/curso/${c.id}/${userid}`)
+                    .card-header.bg-info
+                      .media
+                        .media-body
+                          h5= c.nombre
+                          h5= c.profesor
+                        img#profesor.rounded-circle(style='width: 10%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
+                  .card-body
+                    p.card-text= c.descripcion
+      each c,i in cursos2
+            .row
+              .col
+                #curso.card
+                  a#ir-curso(href=`/curso/${c.id}/${userid}`)
+                    .card-header.bg-success
+                      .media
+                        .media-body
+                          h5= c.nombre
+                          h5= c.profesor
+                        img#profesor.rounded-circle(style='width: 10%;' src='https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png' alt='Generic placeholder image')
+                  .card-body
+                    p.card-text= c.descripcion
+      if cursos == '' && cursos2 == ''
+        .card.w-75
+          .card-body
+            h5.card-title No tiene ningun curso 
+            p.card-text Cree un curso nuevo
+            a.btn.btn-primary(href=`/crearcurso/${userid}`) Crear
+    aside
+      .container.rounded(style='border-style: solid; border-width: 2%; border-color: gray;')
+        #cronometro.rounded
+          #tiempo 20 : 00
+          button#btn-cro.btn.btn-outline-warning(type='button' onclick='cronometro()') Iniciar
+        #Calendario.card
+          .card-header.bg-success(style='text-align: center;') MES
+          .card-body
+            .row
+              .col-md L
+              .col-md M
+              .col-md M
+              .col-md J
+              .col-md V
+              .col-md S
+              .col-md D
+            .row
+            .row
+// Pie de Pagina
+footer
+  #pieDePagina.container
+    div(style='line-height: 50px;')
+      h3 Sistema Organizativo Estudiantil (SOE)
+    div
+      a(href='/')
+        img(style='margin-bottom: 10%;' src='/static/img/logo_empresa_2x.png' alt='Logotipo')
+      #social
+        a(href='#')
+          i.fab.fa-facebook-f
+        a(href='#')
+          i.fab.fa-twitter
+        a(href='#')
+          i.fab.fa-linkedin-in
+  #copyright &copy; Derechos reservados.
+script.
+  function cronometro() {
+  var t = 20 * 600000;
+  var x = setInterval(function() {
+  document.getElementById('btn-cro').disabled = true;
+  var now = new Date().getTime();
+  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((t % (1000 * 60)) / 1000);
+  if (seconds < 10) {
+  document.getElementById("tiempo").innerHTML = minutes + " : 0" + seconds;
+  } else {
+  document.getElementById("tiempo").innerHTML = minutes + " : " + seconds;
+  }
+  t = t - 1000;
+  if (t < 0) {
+  clearInterval(x);
+  document.getElementById("tiempo").innerHTML = "TERMINADO";
+  document.getElementById('btn-cro').disabled = false;
+  }
+  }, 1);
+  }

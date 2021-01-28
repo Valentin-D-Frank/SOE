@@ -21,20 +21,9 @@ api.get("/curso", (req, res) => {
     });
 });
 
-api.get("/encuesta", (req, res) => {
-    connection.query("SELECT * FROM encuesta", (err, result) => {
-        res.json(result);
-    });
-});
 
-api.get("/grupo", (req, res) => {
-    connection.query("SELECT * FROM grupo", (err, result) => {
-        res.json(result);
-    });
-});
-
-api.get("/grupousuario", (req, res) => {
-    connection.query("SELECT * FROM grupo_usuario", (err, result) => {
+api.get("/usuariotarea", (req, res) => {
+    connection.query("SELECT * FROM usuario_tarea", (err, result) => {
         res.json(result);
     });
 });
@@ -50,5 +39,11 @@ api.get("/usuariocurso", (req, res) => {
         res.json(result);
     });
 });
+
+api.get('/insert', (req, res) => {
+    connection.query('INSERT INTO usuario_tarea values(?,?,?)', [2, 3, 'tarea2.pdf'], (err, result) => {
+        res.json(result);
+    });
+})
 
 module.exports = api;
