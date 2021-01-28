@@ -32,7 +32,6 @@ api.get("/curso/:id/:iduser", (req, res) => {
             res.render("curso", { result, profesor, curso_id: id, userid, iduser });
         });
     });
-
 });
 
 api.get("/crearcurso/:id", function(req, res) {
