@@ -41,7 +41,7 @@ body {
 }
 
 #Logo {
-    width: 30%;
+    width: 100%;
 }
 
 
@@ -77,6 +77,7 @@ td {
 
 #main-nav {
     display: flex;
+    align-items: center;
     list-style: none;
     font-family: 'Lato', sans-serif;
 }

@@ -4,8 +4,9 @@ html(lang='es')
     meta(charset='UTF-8')
     meta(name='viewport' content='width=device-width, initial-scale=1.0')
     title Sistema Organizacional Estudiantil (SOE)
+    link(rel='icon' type='image/x-icon' href='/static/img/favicon.ico')
     // CSS
-    link(rel='stylesheet' href='static/css/curso.css')
+    link(rel='stylesheet' href='/static/css/curso.css')
     // Fuentes
     link(href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap' rel='stylesheet')
     // Font-Awesome
@@ -34,79 +35,52 @@ html(lang='es')
     header
       nav#navbar
         #navegation.container
-          a(href='home')
-            img#Logo(src='static/img/logo_empresa.png' alt='Logotipo' style='width: 30%; padding-bottom: 5%;')
+          a(href='/')
+            img#Logo(src='/static/img/logo_empresa.png' alt='Logotipo' style='width: 30%;')
           span#navbar-toggle
             i.fas.fa-bars
           ul#main-nav
             li
-              a(href='home') Home
+              a(href=`/dashboard/${iduser}`) Cursos
+            if profesor
+              li
+                a(href=`/creartarea/${curso_id}/${iduser}`) Crear Tarea
             li
-              a(href='#') Cursos
-            li
-              a(href='#') Tareas
-            li
-              a(href='#') Horario
-            li
-              a(href='#')
+              a(href='/') Logout
+
     // Principal
     main
       header
         .container
-          h1 NOMBRE DEL CURSO
+          h1= result[0].nombre
       article#pages.container
         section
-          h2 Listado de Tareas pendientes
+          h2 Listado de Tareas del curso
           .listado
-            ul
-              li
-                | Semana 01: 
-                a(href='#') No hay tareas pendientes
-              li
-                | Semana 02: 
-                a(href='#') No hay tareas pendientes
-              li
-                | Semana 03: 
-                a(href='#' data-toggle='modal' data-target='#envio') Resolver los ejercicos de la pag. 156 del libro.
-              li
-                | Semana 04: 
-                a(href='#') No hay tareas pendientes
-              li
-                | Semana 05: 
-                a(href='#')
-              li
-                | Semana 06: 
-                a(href='#')
-              li
-                | Semana 07: 
-                a(href='#')
-              li
-                | Semana 08: 
-                a(href='#')
-              li
-                | Semana 09: 
-                a(href='#')
-              li
-                | Semana 10: 
-                a(href='#')
-              li
-                | Semana 11: 
-                a(href='#')
-              li
-                | Semana 12: 
-                a(href='#')
-              li
-                | Semana 13: 
-                a(href='#')
-              li
-                | Semana 14: 
-                a(href='#')
-              li
-                | Semana 15: 
-                a(href='#')
-              li
-                | Semana 16: 
-                a(href='#')
+            each t in result
+              .card.mt-4
+                h5.card-header= t.nombre
+                .card-body
+                  h5.card-title= `Fecha de entrega: ${t.fecha_entrega}`
+                  p.card-text= t.indicaciones
+                  if !profesor
+                    a.btn.btn-primary(href='#' data-toggle='modal' data-target='#envio') Envio de tarea
+                  else
+                    a.btn.btn-primary(href=`/lista/${t.id}`) Ver entregas
+            if result == ''
+              if profesor
+                .card.w-75
+                  .card-body
+                    h5.card-title No hay tareas
+                    p.card-text Comience a crear una nueva
+                    a.btn.btn-primary(href=`/creartarea/${curso_id}/${iduser}`) Crear
+              else
+                .card.w-75
+                  .card-body
+                    h5.card-title No hay tareas
+                    p.card-text El profesor no ha creado tareas aun
+
+
         aside
           h3 Redes sociales
           #socialMedia
@@ -116,15 +90,17 @@ html(lang='es')
               i.fab.fa-twitter
             a(href='#')
               i.fab.fa-linkedin-in
-          h3 Agregar Estudiantes al Curso
-          #boletin
-            p
-              | Ingrese la dirección de correo electronico
-              | del estudiante para agregarlo.
-            form(action='' method='POST')
-              label(for='correo') Correo electrónico: 
-              input#correo(type='email' name='email')
-              input(type='submit' value='Agregar')
+          if profesor
+            h3 Agregar Estudiantes al Curso
+            #boletin
+              p
+                | Ingrese la dirección de correo electronico
+                | del estudiante para agregarlo.
+              .valorid= curso_id
+              form(action='' method='')
+                label(for='correo') Correo electrónico: 
+                input#correo(type='email' name='email' v-model='user.email')
+                input(type='button' value='Agregar' @click = 'add')
     // Modal
     #envio.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
       .modal-dialog.modal-dialog-centered(role='document')
@@ -133,24 +109,26 @@ html(lang='es')
             h5#exampleModalLabel.modal-title Entrega Tarea
             button.close(type='button' data-dismiss='modal' aria-label='Close')
               span(aria-hidden='true') ×
-          .modal-body(style='text-align: center;')
-            input#file.inputfile(type='file' name='file')
-            label.upbtn(for='file')
-              figure.icono
-                svg.bi.bi-file-earmark-arrow-up(xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='currentColor' viewBox='0 0 16 16')
-                  path(d='M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z')
-                  path(d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z')
-              p#nombre Seleccionar Archivo
-          .modal-footer(style='text-align: center;')
-            button.btn.btn-primary(type='button' style='width: 100%;') Subir
+          #tarea
+            form(action='' method='')
+              .modal-body(style='text-align: center;')
+                input#file.inputfile(type='file' name='file' v-model='tarea.archivo')
+                label.upbtn(for='file')
+                  figure.icono
+                    svg.bi.bi-file-earmark-arrow-up(xmlns='http://www.w3.org/2000/svg' width='50' height='50' fill='currentColor' viewBox='0 0 16 16')
+                      path(d='M8.5 11.5a.5.5 0 0 1-1 0V7.707L6.354 8.854a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 7.707V11.5z')
+                      path(d='M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z')
+                  p#nombre Seleccionar Archivo
+              .modal-footer(style='text-align: center;')
+                button.btn.btn-primary(type='button' style='width: 100%;' @click = 'enviotarea') Subir
     // Pie de Pagina
     footer
       #pieDePagina.container
         div
           h3 Sistema Organizativo Estudiantil (SOE)
         div
-          a(href='index.html')
-            img(src='static/img/logo_empresa_2x.png' alt='Logotipo')
+          a(href='/')
+            //img(src='/static/img/logo_empresa_2x.png' alt='Logotipo')
           #social
             a(href='#')
               i.fab.fa-facebook-f
@@ -160,7 +138,57 @@ html(lang='es')
               i.fab.fa-linkedin-in
       #copyright
         | © Derechos reservados.
+    
+    script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+    script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+    script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
     script.
+      var app = new Vue({
+            el: '#boletin', 
+            data: {
+              user: {
+                id:document.querySelector('.valorid').innerHTML,
+                email: ''
+              }
+            },
+            methods: {
+              add() {
+                console.log(this.user)
+                axios.post('/usercurso', {
+                  command: 'ADD_USER',
+                  transaction: this.user
+                })
+                  .then(resp => {
+                    const response = resp.data
+                    console.log('oeiwbvoiebwvewv');
+                    console.log(response)
+                  })
+              }
+            }
+          })
+
+      var app2 = new Vue({
+            el: '#tarea', 
+            data: {
+              tarea: {
+                archivo: '',
+              }
+            },
+            methods: {
+              enviotarea() {
+                console.log('archivopug', this.tarea)
+                axios.post('/tarea', {
+                  command: 'ENVIO_TAREA',
+                  transaction: this.tarea
+                })
+                  .then(resp => {
+                    const response = resp.data
+                    console.log('oeiwbvoiebwvewv');
+                    console.log(response)
+                  })
+              }
+            }
+          })
       // Comportamientos para el menú de navegación.
       let mainNav=document.getElementById('main-nav');
       let navbarToggle=document.getElementById('navbar-toggle');

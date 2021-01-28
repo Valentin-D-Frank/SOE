@@ -2,9 +2,11 @@ doctype html
 head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
-  title LegalFirm
+  title Soe
+  link(rel='icon' type='image/x-icon' href='/static/img/favicon.ico')
   // CSS
-  link(rel='stylesheet' href='../static/css/estilos.css')
+
+  link(rel='stylesheet' href='/static/css/estilos.css')
   // Fuentes
   link(href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap' rel='stylesheet')
   // Font-Awesome
@@ -15,20 +17,16 @@ header
   nav#navbar
     #navegation.container
       a(href='/')
-        img#Logo(src='static/img/logo_empresa.png' alt='Logotipo')
+        img#Logo(src='/static/img/logo_empresa.png' alt='Logotipo')
       span#navbar-toggle
         i.fas.fa-bars
       ul#main-nav
         li
-          a(href='/') Home
+          //falta arreglar
+          a(href=`/curso/${cursoid}/${userid}`) Cursos
         li
-          a(href='#') Cursos
-        li
-          a(href='#') Tareas
-        li
-          a(href='#') Horario
-        li
-          a(href='#')
+          a(href='/') Logout
+
 // Principal
 main
   header
@@ -44,25 +42,21 @@ main
         span.asterisco (*)
         |  son requeridos.
       #app
-        form(action='' method='POST')
+        form(action='')
           label(for='titulo')
             | Titulo 
             span.asterisco *
             | :
-          input#titulo(type='text' required='')
-          label(for='email')
-            | Correo electr&oacute;nico a enviar la tarea
-            span.asterisco *
-            | :
-          input#email(type='email' required='')
+          input#titulo(type='text' required='' v-model='tarea.nombre_tarea')
           label(for='fecha')
             | Fecha de entrega 
             span.asterisco *
             | :
-          input#fecha(type='date' required='' style='width: 50%; height: 45px; display: inline-block; border: 1px solid #ccc;')
+          .valorid= cursoid
+          input#fecha(type='date' required='' style='width: 50%; height: 45px; display: inline-block; border: 1px solid #ccc;' v-model='tarea.fecha_entrega')
           label(for='comentario') Comentario o descripci&oacute;n de la tarea:
-          textarea#comentario(name='comentario' cols='30' rows='10')
-          input(type='submit' value='Enviar formulario')
+          textarea#comentario(name='comentario' cols='30' rows='10' v-model='tarea.descripcion')
+          input(type='button' value='Crear Tarea' @click='crearTarea')
     aside
       h3 Redes sociales
       #socialMedia
@@ -76,7 +70,7 @@ main
       #boletin
         p
           | Ingrese su direcci&oacute;n de correo electronico para asi poder ayudarle.
-        form(action='' method='POST')
+        form(action='')
           label(for='correo') Correo electr&oacute;nico: 
           input#correo(type='email' name='email')
           input(type='submit' value='Enviar')
@@ -87,7 +81,7 @@ footer
       h3 Sistema Organizativo Estudiantil (SOE)
     div
       a(href='/')
-        img(src='static/img/logo_empresa_2x.png' alt='Logotipo')
+        img(src='/static/img/logo_empresa_2x.png' alt='Logotipo')
       #social
         a(href='#')
           i.fab.fa-facebook-f
@@ -105,17 +99,16 @@ script.
   data: {
   tarea: {
   nombre_tarea: '',
-  fecha_entrega_tarea: '',
-  tipo_entrega: '',
-  id_curso: '',
-  archivo: ''
+  fecha_entrega: '',
+  descripcion: '',
+  id_curso: document.querySelector('.valorid').innerHTML
   }
   },
   methods: {
   crearTarea() {
   axios.post('/homework', {
   command: 'REGISTER_HOMEWORK',
-  transaction: this.course
+  transaction: this.tarea
   })
   .then(resp => {
   const response = resp.data

@@ -1,5 +1,9 @@
 /*Estilos generales*/
 
+.valorid {
+    display: none;
+}
+
 html,
 body {
     height: 100%;
@@ -102,6 +106,7 @@ p {
 
 #main-nav {
     display: flex;
+    align-items: center;
     list-style: none;
     font-family: 'Lato', sans-serif;
 }
@@ -490,7 +495,8 @@ input[type="email"] {
     border: solid 1px #ccc;
 }
 
-input[type="submit"] {
+input[type="submit"],
+input[type="button"] {
     display: inline-block;
     background: #008000;
     width: 100%;

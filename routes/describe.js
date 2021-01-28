@@ -9,18 +9,8 @@ api.get("/curso", (req, res) => {
     });
 });
 
-api.get("/encuesta", (req, res) => {
-    connection.query("describe encuesta", (err, result) => {
-        res.json(result);
-    });
-});
-api.get("/grupo", (req, res) => {
-    connection.query("describe grupo", (err, result) => {
-        res.json(result);
-    });
-});
-api.get("/grupousuario", (req, res) => {
-    connection.query("describe grupo_usuario", (err, result) => {
+api.get("/usuariotarea", (req, res) => {
+    connection.query("describe usuario_tarea", (err, result) => {
         res.json(result);
     });
 });

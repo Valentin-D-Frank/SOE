@@ -1,148 +1,129 @@
 doctype html
-html(lang='es')
-  head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    title Sistema Organizacional Estudiantil (SOE)
-    // CSS
-    link(rel='stylesheet' href='static/css/estilos.css')
-    // Fuentes
-    link(href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap' rel='stylesheet')
-    // Font-Awesome
-    script(src='https://kit.fontawesome.com/804f7da927.js' crossorigin='anonymous')
-    // Favicon
-  body
-    // Cabezera
-    header
-      nav#navbar
-        #navegation.container
-          a(href='/')
-            img#Logo(src='static/img/logo_empresa.png' alt='Logotipo')
-          span#navbar-toggle
-            i.fas.fa-bars
-          ul#main-nav
-            li
-              a(href='/') Home
-            li
-              a(href='/curso') Cursos
-            li
-              a(href='#') Tareas
-            li
-              a(href='#') Horario
-            li
-              a(href='#')
-    // Principal
-    main
-      header
-        .container
-          h1 CREACIÓN DE CURSO
-      article#pages.container
-        section
-          h2 Formulario de creación de un curso
-          p
-            | Porfavor rellenar con cuidado el siguiente formulario.
-            br
-            | Campos
-            |                     marcados con asterisco 
-            span.asterisco
-              | (*)
-            |  son requeridos.
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Sistema Organizacional Estudiantil (SOE)
+  link(rel='icon' type='image/x-icon' href='/static/img/favicon.ico')
+  // CSS
+  link(rel='stylesheet' href='/static/css/estilos.css')
+  // Fuentes
+  link(href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap' rel='stylesheet')
+  // Font-Awesome
+  script(src='https://kit.fontawesome.com/804f7da927.js' crossorigin='anonymous')
+  // Favicon
+// Cabezera
+header
+  nav#navbar
+    #navegation.container
+      a(href='/')
+        img#Logo(src='/static/img/logo_empresa.png' alt='Logotipo')
+      span#navbar-toggle
+        i.fas.fa-bars
+      ul#main-nav
+        li
+          a(href=`/dashboard/${userid}`) Cursos
+        li
+          a(href='/') Logaout
+// Principal
 
+main
+  header
+    .container
+      h1 CREACI&Oacute;N DE CURSO
+  article#pages.container
+    section
+      h2 Formulario de creaci&oacute;n de un curso
+      p
+        | Porfavor rellenar con cuidado el siguiente formulario.
+        br
+        | Campos marcados con asterisco 
+        span.asterisco (*)
+        |  son requeridos.
+      #app
+        form(action=`/dashboard/${userid}` method='GET')
+          label(for='nombre')
+            | Nombre del curso
+            span.asterisco *
+            | :
+          input#nombre(type='text' required=''  v-model='course.nombre_curso' )
+          
+          input#nombre.iduser(type='hidden' required='' value=userid v-model='course.id_usuario')
+          .valorid= userid
+          label(for='descripcc')
+            | Descripci&oacute;n del curso
+            span.asterisco *
+            | :
+          input#nombre(type='text' required='' v-model='course.descripcion')
+          input(type='submit' value='Crear curso' @click='crearCurso')
+    aside
+      h3 Redes sociales
+      #socialMedia
+        a(hre='' requiredf='#')
+          i.fab.fa-facebook-f
+        a(href='#')
+          i.fab.fa-twitter
+        a(href='#')
+          i.fab.fa-linkedin-in
+      h3 &iquest;Necesita ayuda?
+      #boletin
+        p
+          | Ingrese su direcci&oacute;n de correo electronico para asi poder ayudarle.
+        form()
+          label(for='correo') Correo electr&oacute;nico: 
+          input#correo(type='email' name='email')
+          input(type='buuton' value='Enviar')
+// Pie de Pagina
+footer
+  #pieDePagina.container
+    div
+      h3 Sistema Organizativo Estudiantil (SOE)
+    div
+      a(href='/')
+        img(src='/static/img/logo_empresa_2x.png' alt='Logotipo')
+      #social
+        a(href='#')
+          i.fab.fa-facebook-f
+        a(href='#')
+          i.fab.fa-twitter
+        a(href='#')
+          i.fab.fa-linkedin-in
+  #copyright &copy; Derechos reservados.
+script(src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+script(src='https://unpkg.com/vue-router/dist/vue-router.js')
+script(src='https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js')
+script.
+  var app = new Vue({
+  el: '#app',
+  data: {
+  course: {
+  nombre_curso: '',
+  id_usuario: document.querySelector('.valorid').innerHTML,
+  descripcion: ''
+  }
+  },
+  methods: {
+  crearCurso() {
+  axios.post('/course', {
+  command: 'REGISTER_COURSE',
+  transaction: this.course
+  })
+  .then(resp => {
+  const response = resp.data
+  console.log(response)
+  })
+  }
+  }
+  })
+  let mainNav = document.getElementById('main-nav');
+  let navbarToggle = document.getElementById('navbar-toggle');
+  navbarToggle.addEventListener('click', function() {
+  if (this.classList.contains('active')) {
+  mainNav.style.display = "none";
+  this.classList.remove('active');
+  } else {
+  mainNav.style.display = "flex";
+  this.classList.add('active');
+  }
+  });
 
-          #app
-          form(action='')
-
-            label(for='nombre' v-model='.name')
-              | Nombre del curso
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.nombre_curso')
-
-
-            label(for='id usuario')
-              | ID del usuario, ingrese su usuario
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.id_usuario')
-
-            label(for='descripcc')
-              | Descripción del curso
-              span.asterisco *
-              | :
-            input#nombre(type='text' required='' v-model='course.descripcion')
-
-            input(type='button' value='Crear curso' @click = 'crearCurso')
-
-        aside
-          h3 Redes sociales
-          #socialMedia
-            a(hre='' requiredf='#')
-              i.fab.fa-facebook-f
-            a(href='#')
-              i.fab.fa-twitter
-            a(href='#')
-              i.fab.fa-linkedin-in
-          h3 ¿Necesita ayuda?
-          #boletin
-            p
-              | Ingrese su dirección de correo electronico
-              | para asi poder ayudarle.
-            form(action='' method='POST')
-              label(for='correo') Correo electrónico: 
-              input#correo(type='email' name='email')
-              input(type='submit' value='Enviar')
-    // Pie de Pagina
-    footer
-      #pieDePagina.container
-        div
-          h3 Sistema Organizativo Estudiantil (SOE)
-        div
-          a(href='/')
-            img(src='static/img/logo_empresa_2x.png' alt='Logotipo')
-          #social
-            a(href='#')
-              i.fab.fa-facebook-f
-            a(href='#')
-              i.fab.fa-twitter
-            a(href='#')
-              i.fab.fa-linkedin-in
-      #copyright
-        | © Derechos reservados.
-    script.
-      var app = new Vue({
-                  el: '#app',
-                  data: {
-                    course: {
-                      nombre_curso: '',
-                      id_usuario: '',
-                      descripcion: ''
-                    }
-                  },
-
-
-          methods: {
-                    crearCurso() {
-                      axios.post('/course', {
-                        command: 'REGISTER_COURSE',
-                        transaction: this.course
-                      })
-                        .then(resp => {
-                          const response = resp.data
-                          console.log(response)
-                        })
-                    }
-                  }
-
-      // Comportamientos para el menú de navegación.
-      let mainNav=document.getElementById('main-nav');
-      let navbarToggle=document.getElementById('navbar-toggle');
-      navbarToggle.addEventListener('click',function() {
-      if (this.classList.contains('active')){
-      mainNav.style.display="none";
-      this.classList.remove('active');
-      }
-      else {
-      mainNav.style.display="flex";
-      this.classList.add('active');
-      }
-      });
+  
