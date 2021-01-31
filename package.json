@@ -2,11 +2,16 @@
     "name": "soe",
     "version": "1.0.0",
     "description": "software SOE",
-    "main": "index.js",
+    "main": "suma.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "dev": "nodemon index.js",
-        "start": "node index.js"
+        "start": "node index.js",
+        "build": "node prueba"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Valentin-D-Frank/SOE.git"
     },
     "author": "Amezaga-code",
     "license": "ISC",
@@ -16,6 +21,7 @@
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "html": "^1.0.0",
+        "jest": "^26.6.3",
         "jsonwebtoken": "^8.5.1",
         "method-override": "^3.0.0",
         "morgan": "^1.10.0",
