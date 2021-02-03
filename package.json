@@ -2,7 +2,7 @@
     "name": "soe",
     "version": "1.0.0",
     "description": "software SOE",
-    "main": "user.js",
+    "main": "users.js",
     "scripts": {
         "test": "jest",
         "dev": "nodemon index.js",
