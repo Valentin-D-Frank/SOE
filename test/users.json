@@ -1,0 +1,85 @@
+[{
+        "id": "12eb1ffb-90be-400b-b863-8f1bfdcc7376",
+        "nombre": "qwe",
+        "email": "qwe@gmail.com",
+        "contrasenia": "$2b$10$C/jqpTuJeGGdc2VUqR08NuJ/4HNKIwHbRfyyY4QL84RuOX6GRnvi."
+    },
+    {
+        "id": "2fb8b0b2-5782-4faa-bd0a-644bb9c573d1",
+        "nombre": "ava",
+        "email": "vsav@gmail.com",
+        "contrasenia": "$2b$10$hq5eCEXvSi2BlCqP2QL5d.gSecRTdjSUF9msFefE0mVWmJd2/REO6"
+    },
+    {
+        "id": "44d2c303-7f8e-484b-a292-105d8843a5a4",
+        "nombre": "Guest1x1",
+        "email": "guest12@test.com",
+        "contrasenia": "$2b$10$be3E2L7oXz9Cp6VjX2yss.mbMBbM7Fd9yHU2fBcEJzRXU7IVwB/Ei"
+    },
+    {
+        "id": "5f7947b7-d0e5-4247-ba35-ae550df4553d",
+        "nombre": "Jose",
+        "email": "Jose.caicedo1@unmsm.edu.pe",
+        "contrasenia": "$2b$10$CPiGBQd/jvnd6KHcfqcISeBMlRaTpnTunEJuOaE3MOs9DghfpIpXO"
+    },
+    {
+        "id": "6168725a-0b91-4b06-8794-43766d49dbcf",
+        "nombre": "marcos",
+        "email": "marcos123@hotmail.com",
+        "contrasenia": "$2b$10$MBqDsBE4y5SDKCQM5Az2EOPe2eM2T.4BOy.Zzf8EDssBZeQfn6Ewu"
+    },
+    {
+        "id": "685832e5-e96e-4d1d-a7bd-790c60d1f209",
+        "nombre": "qwe",
+        "email": "qwe@gmail.com",
+        "contrasenia": "$2b$10$sNFswJs5NXzVbjdMmhpDt.uqJwlP2yH4AEVDbBi961j.2RC8rHhDG"
+    },
+    {
+        "id": "7246a994-a701-4d93-8f70-6e1a38b280fb",
+        "nombre": "marcos",
+        "email": "",
+        "contrasenia": "$2b$10$Q2amQg2PdAxUSsPPzGi.G.AwX.YzFzQrjdlfSEiutwpNvHPnzU4Gm"
+    },
+    {
+        "id": "8ea457aa-371d-4568-8dc6-33437dad5db2",
+        "nombre": "prueba",
+        "email": "prueba@gmail.com",
+        "contrasenia": "$2b$10$Q8paf4YJHOuxsMNEa1hL7.Gd1jUPTq8DXs4hgGwnyf0IE/JdWzSpa"
+    },
+    {
+        "id": "90f3d0cb-c3e5-472e-b1ac-7cc39ec9a56a",
+        "nombre": "123",
+        "email": "123@gmail.com",
+        "contrasenia": "$2b$10$c90XmfHdx.doQ/.Zntb.c.VufgX8rQ7KurUGSNuSaxeweaxiuh6nG"
+    },
+    {
+        "id": "97d6bdd9-0c0e-414b-a0d3-caa93d6795f0",
+        "nombre": "eduardo",
+        "email": "edaurdo@gmail.com",
+        "contrasenia": "$2b$10$aCb6HdesjOSZE4VWJTweguxyRCiMc.bW1zQ4L1vv65fVm4Q/1cyOa"
+    },
+    {
+        "id": "b410b88b-2ff4-406e-abbf-d757d38e7600",
+        "nombre": "uno",
+        "email": "uno@gmail.com",
+        "contrasenia": "$2b$10$SyxAMMKT1DBrlhFi4qYdIOZlBQLCtzCmMBm8salcQ5NNpZ.7ExAMW"
+    },
+    {
+        "id": "b4964268-ce28-47bc-a262-8af663401a0b",
+        "nombre": "Guest1x2",
+        "email": "guest11@test.com",
+        "contrasenia": "$2b$10$.8bcK7SEn3hqcVxMUixJmeaeHJUYxbZyic5jDbX5ELFQ0J25STeaS"
+    },
+    {
+        "id": "ca0476d8-1200-4ed0-b992-00cbe781cddb",
+        "nombre": "marcos",
+        "email": "marcos123",
+        "contrasenia": "$2b$10$VBD7xd9nPoq4Ne5rI6szWOK.dVnsDReXSOCdDaoVF1cpwmGzhntlK"
+    },
+    {
+        "id": "da8630cf-2465-43f8-a807-2c6613ca6194",
+        "nombre": "marcos",
+        "email": "marcos@hotmail.com",
+        "contrasenia": "$2b$10$OBZGIToBxHTXnFrRDiru.eiSOL4qxxWvfL3w0jEMJX6pGWIpeNps6"
+    }
+]
