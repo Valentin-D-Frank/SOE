@@ -7,7 +7,7 @@
         "test": "jest",
         "dev": "nodemon index.js",
         "start": "node index.js",
-        "build": "node Users"
+        "build": "node users"
     },
     "repository": {
         "type": "git",
