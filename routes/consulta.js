@@ -40,10 +40,5 @@ api.get("/usuariocurso", (req, res) => {
     });
 });
 
-api.get('/insert', (req, res) => {
-    connection.query('INSERT INTO usuario_tarea values(?,?,?)', [2, 3, 'tarea2.pdf'], (err, result) => {
-        res.json(result);
-    });
-})
 
 module.exports = api;
