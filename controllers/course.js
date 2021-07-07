@@ -33,12 +33,7 @@ function registerCourse(req, res) {
                         message: err
                     })
             } else {
-                return res
-                    .status(200)
-                    .send({
-                        status: 'SUCCESS',
-                        message: 'Curso registrado correctamente'
-                    })
+                
             }
         })
 
